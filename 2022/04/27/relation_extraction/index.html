@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Enriched Attention with Entity MaskingThis is a summary of a relation classification task with enriched attention. Please refer to this paper for more information. Contents covered are listed as follo">
+  <meta name="description" content="this is a private blog.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Enriched attention">
+<meta property="og:title" content="Enriched attention with entity masking">
 <meta property="og:url" content="http://example.com/2022/04/27/relation_extraction/index.html">
 <meta property="og:site_name" content="RabbitHole">
-<meta property="og:description" content="Enriched Attention with Entity MaskingThis is a summary of a relation classification task with enriched attention. Please refer to this paper for more information. Contents covered are listed as follo">
+<meta property="og:description" content="this is a private blog.">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-04-27T11:23:45.000Z">
-<meta property="article:modified_time" content="2022-04-27T11:24:13.269Z">
+<meta property="article:published_time" content="2022-04-27T13:09:15.000Z">
+<meta property="article:modified_time" content="2022-04-27T13:24:15.198Z">
 <meta property="article:author" content="Wei">
 <meta name="twitter:card" content="summary">
 
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>Enriched attention | RabbitHole</title>
+  <title>Enriched attention with entity masking | RabbitHole</title>
   
 
 
@@ -193,7 +193,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Enriched attention
+          Enriched attention with entity masking
         </h1>
 
         <div class="post-meta">
@@ -204,7 +204,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-04-27 13:23:45 / Modified: 13:24:13" itemprop="dateCreated datePublished" datetime="2022-04-27T13:23:45+02:00">2022-04-27</time>
+              <time title="Created: 2022-04-27 15:09:15 / Modified: 15:24:15" itemprop="dateCreated datePublished" datetime="2022-04-27T15:09:15+02:00">2022-04-27</time>
             </span>
 
           
@@ -218,200 +218,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Enriched-Attention-with-Entity-Masking"><a href="#Enriched-Attention-with-Entity-Masking" class="headerlink" title="Enriched Attention with Entity Masking"></a>Enriched Attention with Entity Masking</h1><p>This is a summary of a relation classification task with enriched attention. Please refer to <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2104.10899">this paper</a> for more information.</p>
-<p>Contents covered are listed as follows: </p>
-<ul>
-<li>Intro to the relation extraction task </li>
-<li>Related works</li>
-<li>Intro to Meta-Embeddings</li>
-<li>Experiments</li>
-<li>Results</li>
-<li>Take-away-messages</li>
-</ul>
-<h2 id="1-Relation-extraction"><a href="#1-Relation-extraction" class="headerlink" title="1. Relation extraction"></a>1. Relation extraction</h2><p><strong>1.1 Task definition</strong>: </p>
-<p>Given a sentence and two arguments, predict the relationship of the two arguments. </p>
-<blockquote>
-<p>E.g., <code>Barack Obama Sr.</code>, the father of <code>Barack Obama</code>, was born is<br><code>1936</code> and married his first wife <code>Kezia</code> at the age of 18.</p>
-</blockquote>
-<p>In this sentence, we can have four arguments and many relation pairs: <code>Barack Obama Sr.</code> and <code>Barack Obama</code> have the relationship of <code>is_father_of</code>, <code>Barack Obama Sr.</code> and <code>1936</code> can have the relationship of <code>born_in</code> and <code>Barack Obama Sr.</code> and <code>Kezia</code> the relationship <code>husband_and_wife</code>. These relationships are defined by researchers.</p>
-<p><strong>1.2 Usage</strong></p>
-<p>knowledge graph population: converting unstructured data in structured data.<br>For instance, if we have a document, we can identity all potential arguments (NER detection) and get their relationship. We can append the relation information into the knowledge graph</p>
-<p><strong>1.3 Challenges</strong></p>
-<p>Sentence can be long, the distance between intersted arguments can be long, there can be distractors between the intersted arguments.</p>
-<p><strong>1.4 Datasets</strong></p>
-<p>We will focus on the <a target="_blank" rel="noopener" href="https://aclanthology.org/D17-1004.pdf">Tacred</a> dataset only in this post.</p>
-<h2 id="2-Related-work"><a href="#2-Related-work" class="headerlink" title="2. Related work"></a>2. Related work</h2><ul>
-<li>Enriched attention</li>
-<li>TACRED Revisited: A Thorough Evaluation of the TACRED Relation Extraction Task</li>
-<li>Relation Classification with Entity Type Restriction</li>
-<li>An Improved Baseline for Sentence-level Relation Extraction<br>take-away-messages: entity nanmes hepls/ better ways to encode entity information into the texts/ unmasking does not lead to overfitting</li>
-<li> A Simple but Effective Pluggable Entity Lookup Table for Pre-trained Language Models</li>
-</ul>
-<h2 id="3-Meta-embeddings"><a href="#3-Meta-embeddings" class="headerlink" title="3. Meta-embeddings"></a>3. Meta-embeddings</h2><p>The basic idea is that we can combine different types of embeddings to have better representations for tokens. More information can be found in <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.12305.pdf">this paper</a>.</p>
-<h2 id="4-Experiments"><a href="#4-Experiments" class="headerlink" title="4. Experiments"></a>4. Experiments</h2><p> Here is a summary table of the configurations that I tried. You can find the explanations below.</p>
-<table>
-<thead>
-<tr>
-<th>embeddings</th>
-<th>encoder</th>
-<th>masking</th>
-<th>attention</th>
-<th>additional_features</th>
-<th>note</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>glove/bpe/transformer/meta</td>
-<td>bi-lstm</td>
-<td>entity mark</td>
-<td>true / false</td>
-<td>global, local dependency, entity types</td>
-<td>default</td>
-</tr>
-<tr>
-<td>glove/bpe/transformer/meta</td>
-<td>bi-lstm</td>
-<td>all entity masking strategy except entity mark</td>
-<td>false</td>
-<td>none</td>
-<td>choose masking strategy</td>
-</tr>
-<tr>
-<td>transformer</td>
-<td>transformer</td>
-<td>all-masking</td>
-<td>false</td>
-<td>none</td>
-<td>transformer_only</td>
-</tr>
-</tbody></table>
-<h3 id="Explanations"><a href="#Explanations" class="headerlink" title="Explanations"></a>Explanations</h3><ol>
-<li><p><strong>Embeddings</strong>: different embeddings were tested, namely glove-300d, bpe embeddings, transformer embeddings (roberta and xlm-roberta) and combinations of them (suggested by the option <code>meta</code>). </p>
-</li>
-<li><p><strong>Encoder</strong>: two types of encoder were examined, namely bi-lstm encoder and transformer encoder. The former is from <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2104.10899">this paper</a>  and the latter <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2102.01373">this</a> .</p>
-</li>
-<li><p><strong>Masking</strong>: five different entity masking strategies were tested. They are:</p>
-<p>  🎀 The original sentence is: Bill was born in Seattle. </p>
-<ul>
-<li><p><strong>Entity mask</strong>: [SUBJ-PERSON] was born in [OBJ-CITY]. </p>
-</li>
-<li><p><strong>Entity marker</strong>:  [E1] Bill [/E1] was born in [E2] Seattle [/E2]. </p>
-</li>
-<li><p><strong>Entity marker (punct)</strong>:  @ Bill @ was born in # Seattle #. </p>
-</li>
-<li><p><strong>Typed entity marker</strong>: 〈S:PERSON〉 Bill 〈/S:PERSON〉 was born in 〈O:CITY〉 Seattle 〈/O:CITY〉. </p>
-</li>
-<li><p><strong>Typed entity marker (punct)</strong>: @ * person * Bill @ was born in # ∧ city ∧ Seattle #. </p>
-</li>
-</ul>
-</li>
-<li><p><strong>Attention and additional features</strong>: these are exclusive to the lstm encoder. For more information, please refer to  <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2104.10899">this paper</a> .</p>
-</li>
-</ol>
-<h2 id="5-Results-on-Tacred-dataset"><a href="#5-Results-on-Tacred-dataset" class="headerlink" title="5. Results on Tacred dataset"></a>5. Results on Tacred dataset</h2><p>Notation</p>
-<ol>
-<li><strong>default</strong> : BILSTM model, no attention, no additional features, use only GLOVE embeddings.</li>
-<li><strong>default + xx</strong>: additional settings added on the default mode.</li>
-<li><strong>default * xx</strong> : change element in default setting, for instance, embedding method .</li>
-<li><strong>transformer</strong>: using roberta-base model as encoder, no additional features, use entity mask.</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>setting</th>
-<th>model</th>
-<th>dev f1</th>
-<th>test f1</th>
-<th>setting details</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>default</td>
-<td>0.6473</td>
-<td>0.6199</td>
-<td></td>
-</tr>
-<tr>
-<td>2</td>
-<td>default + attn</td>
-<td>0.6455</td>
-<td>0.6414</td>
-<td>with attn=true, global, local and entity info</td>
-</tr>
-<tr>
-<td>3</td>
-<td>default * masking</td>
-<td>0.6208</td>
-<td>0.5977</td>
-<td>change masking from entity mask to type entity marker punct</td>
-</tr>
-<tr>
-<td>4</td>
-<td>default * embeddings + attn</td>
-<td>0.6540</td>
-<td>0.6620</td>
-<td>{emb: bpe and GLOVE}, {attn: true}, {local, global, entity type: true}</td>
-</tr>
-<tr>
-<td>5</td>
-<td>default * embeddings</td>
-<td>0.6544</td>
-<td>0.6388</td>
-<td>{emb: bpe and GLOVE}</td>
-</tr>
-<tr>
-<td>6</td>
-<td>default * embeddings * masking</td>
-<td>0.6295</td>
-<td>0.5951</td>
-<td>{emb: bpe and GLOVE}, {masking: entity marker}</td>
-</tr>
-<tr>
-<td>7</td>
-<td>default * embeddings * masking</td>
-<td>0.6201</td>
-<td>0.5946</td>
-<td>{emb: bpe and GLOVE}, {masking: entity marker (punct)}</td>
-</tr>
-<tr>
-<td>8</td>
-<td>default * embeddings * masking</td>
-<td>0.6545</td>
-<td>0.6329</td>
-<td>{emb: bpe and GLOVE}, {masking: typed entity marker}</td>
-</tr>
-<tr>
-<td>9</td>
-<td>default * embeddings * masking</td>
-<td>0.6566</td>
-<td>0.6397</td>
-<td>{emb: bpe and GLOVE}, {masking: typed entity marker (punct)}</td>
-</tr>
-<tr>
-<td>10</td>
-<td>transformer</td>
-<td>0.6971</td>
-<td>0.7030</td>
-<td></td>
-</tr>
-<tr>
-<td>11</td>
-<td>transformer * masking</td>
-<td>0.7113</td>
-<td>0.7063</td>
-<td>change masking from entity mask to type entity marker punct</td>
-</tr>
-</tbody></table>
-<h2 id="6-Take-away-messages"><a href="#6-Take-away-messages" class="headerlink" title="6. Take-away-messages"></a>6. Take-away-messages</h2><ol>
-<li>transformer encoder performs better than bi-lstm.</li>
-<li>comparing different masking strategies (setting 5-9),  we may conclude incorporating entity type information into text is beneficial.</li>
-<li>attention and additional features (setting1-2) helps lstm encoder for this task.</li>
-<li>a combination of bpe and GLOVE embedding seems to work better than using GLOVE only. (setting1 and setting5)</li>
-</ol>
-<hr>
-<p>This work is fully supported by Bosch. </p>
-
+        <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Sorry, the password is wrong." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="0a9c25a600621ede5f3ee68ea17fec0fe3b172d3511f5004ecff75067f6ad000">fed9b39169dedbd202ef4b1bd1b717a8298e84463053e17a8bc67a0fa0a7f8adab5afb767ba7da64c407f19cc53f4d376dc375cd8ea9c815f770b5cb89de44f9e2069e4ae27eab994ca5f3a9b1c5321b77912da135fc85d2f94f8d5fc3d0dd0453b062c2a78926bc2cbe845b814cd1f76a9ed77cd81bc62fad24d77fd280a7d948e2efe05ab9396662cbbd76e12f67aff4da8f7c770c14fa9af5c23013c022498a6b76349adeadeb5c3612cddc98870824ad34d807d0cee04f78e7fd322f673dd0a2bd19e9fcb6c881d8302c56ada1038995801a06e376cc0ed78f2cb74af4f21470f50fc48dddb1b48ff20a9bfaf8e35d7050b8bb2184911d16d49285e4d1adc1470a94fe4b2be379d056ee6416c65d78cb9a4bf78b89b4df5174f1ab1de5adb3e6cd9c018256cb73bfa3dacafe447b9f057426da8340ea3f204796e5fdb2f4209491dbfc973b7ba4d792cdef2ada676e6343ee223cb1d5e98efe1e59c93f1547df958484ff3902d46ac0e9124e4815bdeee80032223368011f354b6ddfd4e3603b57bbcb647d9d6c7126499d14d28fd3bf29562bafc531d1aedfa98c9d0a535dd558588e668a2653a4b920a21de7eb155fe37c300b6e00c4ef9b719a263c2d441c0e1b7213596eaa487f9abbedf81bd54b6337a5a6aee9a442e9104067e8d497990b54f220c26a29afbcfff0d5f6891f8107fbed502bcb884b19ec57e9602c61a9c8ececfa4f2bacdf4988a6950e40ed12a137c66e3243881c3866c1e1783834f033287976caa7fc2cbfaab8c89756c7ceab36f089744e31b8c3f9a130ce1a125ba2834fef7da52d3c2e6639ff7efffb34378b861fa6c07a13b6257fc8be6c82eb5d5d6dccfe757e3e5cb308782d3fd9b37eab168036a8e3ba48020a0f9140ea140d3d856b36070ba6b4f90268b9442586891052eb0f30d3859d9626b514da7239f2f931e190992fd11fe3552604d1c57042111d2a3f80b7810046c141873aca22810c420dd856f0d0406189ed13e6da2d0e8dd062f60cce6f2bd21ca3f845f2a5eaf29977e64e493ca1dd6205ef1a8fad047941ffeb0f528e051e1105d5dff6e8165148d99e3ce046a341ade8b31a3d635cce4669b773ece2817ecff3da69ba75ac5c8dc9136789a27fc36a9085144f27863dac3b4610d1cd91cd29f56d2b19a1159f7df904639f6b57174a559895974682e57e90a1559316de6f62fb34c9bd76c04e8cf241785e8fe3f7f945622d4c4edfbb2c288a29a47ea49a53c6d37a26c4804533b401dec8c21707752f31ae371b6bcb49a38db8ca07caa411eda6555903af7e9688b088eb7e3a015dd3daea52cc27b04bd64769acdf90d21cee035b4c64ad77d5ef1f479108a3cb0976b2f074466fe6437d2ae7013dc990b0658daaa88411cfdf877d9677567ad5e7724a7af0a976833cf7740245fd99a0f4a2a4ac04d6b5b34edbc66763729508718fcd5deb1b98feaa90cb25ff8c8c2c06cd246290a3d27124aa1e8bcb9a61b923434a08def6c153622b92086755fc1b31565e3f3e605273a00289c7349554b5ca4d5d705517bbe88384c1c2b7830b1a2882bdddd337ba3bb5e5124b2c542017cfffe3021af657ace6e3f7cfb0e4cb3833a2df825cbb5015625a82725131b2d03df5492bf4fc4b5d297e8a9227fd739742f8c636ca6e337e82193457a47f13060eee173882a58ed289a0f27487ed6ef9d7406abc6c0f01cdad3787c92ec06402d41fda174c42b37dd5b9453858011461ae455152abfc713a5f6e393c83c3ef5ea5e1ce204f3587ffbb7a7b23f3dcfe2124c3d32934fe9738668f6cbde0af655ce77a903a8230cf37e6a17b3a48e514cffd1bc7abffa499f44da2512484fad193185ac2173dcefc248ce97ce23ff1824f21cc45420c55a70f4bb4bd8c3827d2294ea443e2f98a520c31619bf9f9dadbd9778e7f3c0dbd360b08ddac6456b826f15b60b98158997a48abe25b7a99d93802e4119d6c429c67ef6de2ddadb5ec877692da931acd43f1ff66dec760ca2938c92dc997bd7704c02ce6518084c437da44b1140b1f7c00542bb0bd701e2e49d45a03127700b47d2d9fbb06b4d39b925117aba971decbaad128596ae1d7407afd55afe76832f11249d663cb2877af14d37cdc771eeb5b4329309cbbdce3e5666af2631d1e5f3a1d7cc6ea713451b59c71c9f7e77dd34e956c26215079c6be14b5d3a912314170b984580cbab87e7684485b5714cd89c977ad430ee13563134556e77338a8db19fa9a9c5bfde3f83ec834085f652796758e927e32e0023a736a72019d75d5747bd941311f40a44bb9746c9d99607cf344f815b0a885cdf4e03a920b886215fee90e6a2f4f0e9248ea725cbebfb49543f76a9e9b74fb8ae3e394f8c42868412278b7f8b99813a7f34101d5e737888413baf33a9d7ef303d2a997b3b15b6395203336533fb12b3701108db3754696636a73b1acbd5ffd34c7b2a4a20e314396c8ace691f50aec44309518f69a7d0fe1c30d2c319279ae6fa9ceca7090fb32fbb16a87254bfc51c367609b46fa3ee2e49a5d7f520c90f94002022ffd6eebcdafb239d30e92d5cbe79f157752baf63f9606a43fa7e0cbf02a426d835f61a6ca782da9a7c8fa6a7fad89568b4a8066161748d84814436d0dace38fc8b57004c6dab33d91385ec37c9c9f76b85b8727d79ebd2080f5884d3622a599bb4842b98726982fb7a299d2698f057e554c79f7923f8166c475fb0e2292757229715cac878b11e17868a3a08894664cdf9c54c7e99e1387aeb2333799dc05c72be1f3e6f74b00058dc26e2479ca47d847c622e65e8430edb68d7339c0dee8e76511d3a2dd16905159f3867304e5e533298df1f0242651089efa5f0606254ada2916515a72420c4af670103836018dbbe463e1292a1263101a7ea836e241aaeb2c85e2d385b2523028c0280648470ae377291a942f46ccd8f8769887ac336e2fd09d507b103f476da8bdb1a226b3b9e451b9cceb972ade62d94ea4eb1e9d436b762dd7abad1565e718adda58d34478802fc638ef5f6fcfef8db2e251039d112ac0e1fb789b7188ff749412b858171fbc26bcf6f2f9abe849c7bfe54dec05d473a4dac45f98d041d641a21484b5baa16cf955c2796697ad14e13263ae2d53c46453fa8e1bc6037252cf55efc0080de6efd35aae87d9dbdadc11139d17441a0d1d663c105a9b66b0aff58be83ccccb2a84ebe81d2ac2fed23e1a222a9c79bd22ddc2f9fbb6725f61651bd9b3bd7c083c2208be92825f30b35c3b7e0d796b5bef8b2a72fe9d2581f35e17fe435270bf71c5b11b9903a826aded084b1de88d8fdf68d333b19afed7e4be23261569bb3c4b07ce511e68266235d47439e906262e03a1c54d708be5d71ccfd1f917fa4a64fb9d5fad33f471f57e4c1a4e1c0ba58a75a560d37f0ac552bd7ee2a99e2923686ba25af2dd4b264420da1a504e9c0100c3c5fbfb8ee9f781e31565a98f6cc804b80fa563ef97241fd3a8c99c31efc2e55a27d35f6b6c94f78bcc3aa9c9dcbd09f805338db5f538032a19d56ad9604f403332035241fd34a126d9aac93aa8ea4414cf9f7257b48ab8a655776f133d7214f66e51f078eaa5e4956a5cd3e05c8ca5bf6427755ae60de350c4c217607aa9a952f92c91223c7b5779e11471d7c69490d598d958c4de14cc836e50d5182a5d011cf57cde59b9e752850acfdb5f45c46e1f8a955107c8526d1909557da0971b8942d954be34f8dc6c5183065b5182ac557376165bcedcedbb0e568280cf31d26234ebbbcf42491003a1173a03aa48d74518101637317af8d4db172c8e9e07263c31525a8f801487adabf8bdb36cb17d0cf8beda9683356248a6048d1eb1b4cf1f861fb591e24bae52c7b97adbc9d5bc24ad11c29092a0a1e3a1d691eac1c4ae1f796474cbc13c6316a0e370a46e785d7c952bf2a1c260e51a8818fb5ab0f7baa614541f3e34e171ffa786fcae2b551a6e4db58900f99b8cd94a2ad5cb3de8f5d34d0eb6ded3c5695b9640f90a86a3fc93d7e4d79ca73dc34feb8d063fc15189ee911e0ea57156b4fe112874eba7fd48ba17a729b48561ec294dfae4c862ba30eceaa2dc98ac6ba876d6d86eed351af275042cddeaa38b3143210a746c3e2899394a87be6f10cfb909049b682318cf5764222bf141679b7094204fe063c6b69a973ae6c58d75214e3156d8f6fb4a363116de44550cb792bc72e9cd4212b8e249bebeb4ccf3e5516211aa4342cdaabf6bdf42e42014700e30677e34efce447323f819ee3bb251fd4096f5a5ae7d49c150a94ba047157edae223c7c4feb709ad24eacebe1483ad70c8e63daf6478f496fce2006d91ed997c60851b74fa486d8bafb60bdba374ba5afeff62b78654f7ad7a460a2b77e22989b6ae9855820f046be80308040498774137873c48eb75448b35e1eebb924cdc6c9a58f79a713b798eac46754511d8a431898697b00ca069318bcfd7328232704ebe5c7ec489051e16d6a83ce25bb5020f5c90d434ea43daee8c14d42251149c147adab217bbb3fb364463056a2365fa7a21056661076fb1827f1b3677515604b134f852211559a2fbc23b6aabc029b57a8e89e38b4e7dfd4767ed5e60a4947851b19e97e4623f69272b60368681161a2a1c943751deb2f0308d9b1b32d2bdfd0178a95a30cdc10017355375d59914ae268ce97b139f5f5ff72785d976abcfcf79cb5739b7dcc39b4af1113051f03d954e0df1abd5932af8e32daeec75abbea3d1f5502ff6eb44b978f2206adf574cc801cc586446603b32d9f8c31705d7b4ae85f68612ffbac7fbd117eaf484005d72fa3a59559cd3b724dfbf8588006d54c6d32fd0a9d5cb998a337d57d195a157575d3b96d43ddbd3e984a554efb865851bf35c977bf7a4325677b1e23c2183bef6a1ed192a132caf504a3dc80a7245d6c61ee8c81dd8a221f6343946669f538f8c207e583bb8e6ada55b590a3406a930198280e7361043236fd94d57bcfa3ee81425f901742a14fefb06ca8128ec3288604d3d87b38287ef2c5992e1e3abc3935ffebaf80dcfa619a16d316e409b3a1032ef8c7eda788d146b442612f7686b5f0f5efbe5f54ea8dd1a0d11e5d720c82ed1ae5c76623a19ae255e0e4a79e73ed452827ae4731214ec0b3ccae03cc53a828ed991a5007649619999fad3b3334316c5368db8e08a84bde954a81f8c1e8270277c3675214cb10bd32ebc8d5df044bcac31b19a06182989e4a342bee419043a37084f0b57dad6a6b57680b012dc21086a3940b97a83712ad007cec9e581f1b07f34d41b91d06e86b22a9b52031fee2dff59c71eb715a5f7a5d0a74a9b25fcef791aaa2b73c108b1a841a8d31612e46ea7fdf38a9c088da52f55f3a6648aa79647fe6ee07e8f48278dc15d8f1b34bde337d84772115d9a9d59fd467f7e1ea3a9c83d9ffd1a56c82200817ede95f9461615396f69cf8cafb466e69cbf3858c5ac426a921ed37469121a52638cd7b68397dc209a0bfdafb6cf0d0a98bb9d257aeaa2e283ddb9cc405d03a555f4d0e9fb8d90acd34edece606993f787a6d4b72eb386330062d7a932edbb6295272df01c3d715b1e26dd3fd439d439933274960eeebc5e582c5914d33458b64e19c7156cf30f54927675a2500076e376cbf22f05b22f3ae806c6dc0f62a6e8802925f902d873782f2c3b9f5572b30dde04d8dc087b534f8a806624abef3ce47e153de800ee0cfca2c9265432d6783cc48f36b7267c3403e0c63c3ce437af3a9eacffb1885e39c664dcc83564a695c594070f829a42b2126e0fef3c8ad210a62c9f69bc54747d1c2cb1393e29c6d6af53010f4a2522876b1fcd53659b8df53bfc4053f975e0016a06391895cd9a8eb59ba402e0a41675e3732d74cf886c98d991cc80666322c826e90eb920c9e40566584982a0e315dfb960b5e57f7fa6d99650c0c6867648b21fa9f61e20a4a1eb466a2fd52ef2f5003d8eda086ae39648d236e31bc851fa614fbabb2e7bd818a7dece446d0697ea865d644dfde5a91962a3732fedca08a4382c4c4b591b70db3ee4751ad0221065bcbdbc9b37419efaf35140d5045bcf5b7f2d2cb49762014920e6ca5310587ed682210910b24d551471f8c95cc0aa20d2cf1a70f69f8e261c6a382559aeb55664032729d9c639ae9c0bed423e33d4beaa032c7fa877795e11d1010209a641c9a18bd285905ed3ee9989846775cd5fd54c87cd4e4d44df1a40aabfa2e21be46063915b1ba543fccaa3fc7f3ec0a2eb6344ea2414eddb01acc43cd24d0ed77bb563d2ca3197afa53656ada6e409a821f36ce1f74cbd48e206db7aaa7b96cc5193ea188d5e40f2f9755fc2f3f4ed639a511fe1644c6ab4a2d06fef8e32978adfc379dc197ce9b88067eef70a1bebc32face9533babcd50f34c5947ca18f4c0a5a8acc7a3e0beebae7246d43731d9a3b9d08fb21b0e7d139b19d0efb239dc3bd6c255bcf43cb99d39c89e5c3583bde85c0f809f284b2295063b3f0dbc3771010e2c77fc563d1dc18a85137ea6809f8b43e231cd4cf00d9a415853768d64d02061377142d4575ec5de89625194e9c10ada9e5d24da3d5f6aef1d595738f112bbec2cc87a41e64a6f8632e16a222fdf4958facdc5e1ad6e79690693a425d0f27b4f8591019693b141cd595e65f8a820c99c9ba21902226a4c8daa45168b13060f5b5a3e66ae46feab9fb081bbb7ac10f6fe4175798a88915f2818c5f5fd4e201f3848cbf3c21593a5b58e6bcc702c5d19784cf8ef971fc6b2445e831c6a0a2d0a439b9fd817442eb5b9b665390d212b71016dd6f7a9a7e6523f2e94cf91e5502a25ac53f72ea87afeada1bc54bbe76f3d4d326a29a40a2a9639cd815a9e4cc0e3a2f7a60ca8771fbce61022da00041de7f8832d4e7a61700abf25946872b31b3ddf4e11697e1a926780568e98fc80a98c3d240ff71beafddd5888882bf21d7ee50c6481d3eda63f546e1d6770f39c2e1c8458eeea19f8198d0309c3e01bdd4cd601200f44d226e7c4595d6ca6b906ff8d0553cb123061d7645a8c2ebc81c8bd6bd5c5d56561ed349d670c32ed552a41801731c4f5bdacc05addd4b8b296683ea1e6bc4fe460a29d25e79e49c9cd2168abcbe038b8ab6c7b76343e9e883c3f8d1b9d33109e1da88c0da7b4c0857bcf3c4b5f0fb1691a50fe56ee99299b30bb1381995aad377c582ddf080b336931ef0e29f6f87ce33fd5c6cfd6acc9b338cdba0f2b86280bad2a46c778c133220167d792c54381d00805e234e9d8a2a79bd29ddb2beba1a2a806ecf5730074a88dc7e5be7ec3d43a5e8a85f7acee047733099f2b211169fd03753853a53e3b4c1548715719ba3ab8e28ad3b2d56bea236256b57740d1418670d4e181cc7202c611ffb87ff9178304cd55e230dc015d762bc2f283819b4d469b9aa45d3f56ea34592dcf6cae6f284913519598a686266c5518b4a4fde6f37f9c984babdb8473ffdfd3b8e18e35bfe756d31a1b212fbfab903c209675f4039e4c6a992e0a2b25d1f4a533cea20973dc8686217ec581b70b4d017bcecd8d3e8962027eb4773d12fe9423931d4271b031321f57ef09b92e5c4e43b57dd1c208ef152f7509b50442f9c1df7dabbc98245d6a76c833bda1bef31c6713e16e37160f9f12959512fb0ab8efaa34377533b6c124d1b319a138133a1261df7cfdb2b5565d58cafa5c719b016dd91c3275dd909570c570189c3468e4cbd133289013e90d16de731626fdd4b159581528a48271db1b26bf55d49a8f73031fafd598808ac369ef7989d7291595c232711fba14c8eb7776e79206026eec93b66811aa71714861bf50bd05383b872e2d13454ff8b849911f2b30b567a35b40fde07a296a140ca31c15969199788e6ff7db307adc3afd354c461a49391034f29c2f2d59ef1353a3153a89f8c808fcc0ee18c54ee13497f22e7dc03dc488a308ecab0e863c1d529ef7c2be11bf569015456d63948dd8efd69b5dfd185d53e049705d43c4b7f781433c285fd6e637c6665bf0455c1183114fa38b4ed46970cb127a3a5898fa460a2af115b85e011aff69c5f3433b792a88b7e776299967a8d9f042f2638794953ec8338bf66008b601c6ecc8c28b65d7f829c4131fbbfebad1737e33928ca87260770969f42e177d1afbad49390b2c11530cb3c580fd11b115476307f62c0040d37d20de44b5a84bd6896d3f109693c9d4f10b6697068399d2c54807b430fb5648a0b05bd8bdd28533766fae797a84bd192082d8c17586e806385ddd69b2276de32a1e487e597630cbb7c52370300b03ee40b525a07f9e5486266a9ebb65645fe9ff48b24353705d4dae9710de4c38ae7c252c11815652586a11467c1c62bf9cf8842092fde3315141fc2d08102b5ce1517bd68240df1e17d9666a89187c1e482df0cb74523a94476098fa6747c94d0f6dbe5506bc6a89ffecf95df996a5a8c5fc28a18549266b4e6475d4fada92a7e8689017fefdb99964a9a82d99bb18b36acd88728983068c1e0a870b73c1d926764424d1d49ecb7c316bfbf19117864eee7583d001ae1099c99cd03473e2e67da3be3ac4b664f26a4ad4083fc13d1b9516adfa5f54d854fa288b40bdd1ca6ff861b7ad07af5895d0ae3acfa976ea21582c71c0f4410326d013d643851723de984cd938bc963fc45a1bfb87df7cbde0453fe6d43ed7331c8e8e981e7476108d0f717f44cc8dac0d77c5d6b3c2ad416e84cd2640874174daed30a823222d3b49cd53ddfafb10e0c958574a0101a3e26ede7e670e28ceb148e65d8f6d7a6d77b4471f584422385f45503c37e075049f62c9963a9974a2e731c6e09fc2becd4943a2b71abbb28c7483e15d5d22dc58e1567fbe2f1a62cbec21dc700f497996d7227b342209cfbd92ff05c095be742724336d60786d16e4ec5b6cd3b1879fca53df8d572f6fd75b53ef535bf9021d5ab45812cb4b3d447405d1648f400c3f78bf95a5feee6479b365de77f17925364a93cc448bfe8c92e321e78fc4a52c05eeb9add46b5d642d69a91d91d4fe88aee8bd7a0d08b5579a54b98fa5cad55a569dc7539f766ef6157ff7a92d07718fc3994e476efdabed551cebb0fef65ecd141e1406bab3ff82acf6bd1edce4a1259abda165a16c139e73cfd76d3140b214f4ea9fff33d353173f99428bde6c73834758f44344ff190d21c19c722f271c3aca9f24a2b2b1c98990185bd8ac3f76f152e4c3eceec6ab4d75a9e08be470d4b5307f906ffbce54b32fc9f1e6cc782badefeef011921f9f9c8874f3df7bc15ca812d81f1e9483f2416d53af703091e6e94f0097ba3949c301c2f0c8e77abe0600992e5925e9e3a31fe54868ce7fae9da0ee71eb6512241a277ff18b0b31bfea596b4a016d01d3b26fc996b334cf9069751a1a73e821bcf655150c2a0dd6db25ef7fecdb8ca3893ef7eb5d2b89a8fd13493b178d6b97007cb63c6dc65d9f67f3e8599af88c0b66649f72f51441178da1ccc8d19258394a58cffadade36b7437ba6b3f6575468545dc0e7a25fa77824d4d713889d9798869ff72d0df24177c7c4d4ea274dd5c48f894ce0122eb5c84f864351e899c69c5e7603adcdc428865bad45b36e2dc912d881bc0d189ab8ea7e1f1af6964194bb5c5c0cb2851654fa3002158b9324f9c60bce9a08c388d1830868b8493331f2785d4aa82962aafa4ad615498eee86c1dc688f05bef7b642e83a8f9fe74cf60a41c7703edfb2417463b69ff4be9273882a82c98f06a8a78dfa5f40a72887f599f38e2085b6e9099a60e8b486b5d67d7cd47cc7b098a861cdbde1141694d81c7ae58e3be48b0609c3ec9bf9d16ecb969aef5fadd41e034c8804f3a5c90d58a582abe21eb3e3e4c1e6db40c640ee77df8dafa03a0efa78d0ee0cb9eb658be0190fa21db8fd4cc770dd096001623ac711497cb8960d3312cd187a9f213cac027588fb4fd80f7ee6d1349036210ceeb124c451b9b32dd2d9dae0612e88e280e79e04c5000afbc5ae81d2bca8f1a150f65796f44382db03795c46ee2b075edfd15a15c1e5bbc66bf91208d9082fa78b3bc28827e2b07e923f4f905b0843c6c0e2cedb6911673705bd3f3e59fc1eac640b62022c1736b7cfb2dd172fef99971f5ac915a9449ee4ce6c74367c4f31bc96f2c5e92b96e6436c61b83acebf9d9421137b9f1d384c98a923d88bddadedaa4be1467317dc47777ac877790fbed0875f3da2fc676863137de545260a911ca859d89bd3f3bfc125f79f10cba807f64e6701139ce0a003f17bb06cb71ab1c4b1a7dabcc5b356205e5e99a526baa5ab3f31f9260bfaa1ad61ebe5017d378f4e22694bd6ed9598de74c883f2a289471fb3ab80159a2f8d68fd8ac37081ac6e39856a339f05c219ec961e7997e62095da0187db4f953f727c35237e555f3b7dacbde6c76d1237be324ad7c97b90dbf586d104781aed4839ad41c77df5219163d8e7ccb5ad8169214eae7873ec54d635ab9f0a5e30a8d29210dd9cf10dad0397cfb65ed84c0dea9e2d6b43870902a05fff17a2f436eedbca10fa7c0d0ee75dc54f60e76c60d06689c5bada3051f636f7c0158fd00f0a258ef3a1dc8bade3131d00f2eed3631afab9a46e737047de17b46b80c8be0bc8b7de575912285d99116536263938f58693a9be2feacf88c709a567102077861635028c556eef5d43cdf6e7b8c3cb927ee3232ead5728a8d96b668ad7f16116a430bdbe061a6657d7112c6c12e6954e97a7ace79edf81e7acd420dee6c89663071c5a8a18584248d391d0801d8f19553b6e66f68939dd9a839821ecdbde181eea2860206bd5cce05ff0285cbb4083d906061fc58fe9e54e43c6a00ebc4e7a613a06c4692a74f55bf079ce38472ec9ff216e415cb70667dd88daffd50b94af7323dd02f95211c53730f9602ad8b3921878c1777ee5dd4a033d9cb2ebea4f6968e455c6bd4c8133089f03d3dc01446254365a19a424778c5d91a89ca4cddeb97650304ea3ab0ac324f7fc6405d78eb5bd69711bab475e19590a93be726cbaaf9334362d7c40e701ddc7a0602042980bbd43acb0275b703f55ed4d9bb3c31dfdbe440bcf381e36e9b482089b6350aabb8603646c038ff9cb7c288a1657d0782116c604708a127261f32f2ee37b7b7d1a7d8e0817a72e14743dde15310b85f6034026a984e119d29756ce0b63c19ee2c1dc765964ac8e6bc64cf93fcef5c525aeb78043f05a8b86d8931743fd745a1751992b13a78963611cfcad42107189939c4e0535a3042eba2e9dc3b0eccbafa9f3cda280373b809410d6c8a5fff1e18af942766d765efea09f57a634a384b9a09c80933870e94041db0b109fdf240327bb6e7b60d08391e256c926f8488813685a3495f094ee141608617f6f69d59a1015b9b615dcfe56a8e7c616e094ac98af29fcd0a24be763c4c80c3dea82e3f0e55b725b232052b0e39cbd672ba929e46dc73ba17eedee989f47f1245bdf9e34eee0217e76ed6637ef901000a5896685f5272caab43639a564078c3feef08cd7b4e0dcc71bf74509c150bfe841cffb596a41beaf6f4d0e0d4242d13dfb6f4acace89d1b6491d764705648e691c9f8b402e68a3deb429890120dd6cddb236395d99c04ece99f4e4063c08d1712b7e5f8e19573f5876b00a0ef2daf1a0f0d9734d2baf4a37c2b727706a7650b97fa615452660921c754e793cd2df937ab0b3cc8215b108c7bae29c84add17275193477899e6813bf74edc8e9cb80fa5529c8ecbc56bcf3c616138cf09d375ae0ee337f8414264ebaca857deb1e22f5433e63e9ea51d40930a0669307b1ef6e1c4c5a666ba8f7168a26d196f79600cf33b66f695bd35320ba33fde5a7ec300146516053900f2410ac5644551b3650fd1d2bce50f8df14d8fdf198d7b79212721a27145aadd2e104a96b34b08382f01f7b7cc3f36fd0dfc3f823295147f8597cf058d8d8573e88beebfd0c5e27b82e3e7afb319f534be74d9656b80bd68d26d171a72e8311f8fabccdbe920e67a69733de51ee9a7c104c59fba914e7fa5851e7</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">You need password to access this.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
     </div>
 
     
@@ -426,13 +244,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/04/27/error-archive/" rel="prev" title="Hexo error archive">
-      <i class="fa fa-chevron-left"></i> Hexo error archive
+    <a href="/2022/04/27/encoded/" rel="prev" title="encoded">
+      <i class="fa fa-chevron-left"></i> encoded
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/04/27/encoded/" rel="next" title="encoded">
-      encoded <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -491,7 +306,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Enriched-Attention-with-Entity-Masking"><span class="nav-number">1.</span> <span class="nav-text">Enriched Attention with Entity Masking</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Relation-extraction"><span class="nav-number">1.1.</span> <span class="nav-text">1. Relation extraction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Related-work"><span class="nav-number">1.2.</span> <span class="nav-text">2. Related work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Meta-embeddings"><span class="nav-number">1.3.</span> <span class="nav-text">3. Meta-embeddings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Experiments"><span class="nav-number">1.4.</span> <span class="nav-text">4. Experiments</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Explanations"><span class="nav-number">1.4.1.</span> <span class="nav-text">Explanations</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Results-on-Tacred-dataset"><span class="nav-number">1.5.</span> <span class="nav-text">5. Results on Tacred dataset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Take-away-messages"><span class="nav-number">1.6.</span> <span class="nav-text">6. Take-away-messages</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
