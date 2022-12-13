@@ -233,21 +233,35 @@
 
             <div class="article-content markdown-body">
                 <h1 id="What-Do-Vision-and-Language-Models-NOT-learn"><a href="#What-Do-Vision-and-Language-Models-NOT-learn" class="headerlink" title="What Do Vision and Language Models NOT learn"></a>What Do Vision and Language Models NOT learn</h1><p>This is a summary of the project from the course <em>Lanugage and Vision</em> at the University of Stuttgart.</p>
+<p>UPDATE: our paper is accepted in the student session at KONVENS 2022</p>
 <h2 id="Contents"><a href="#Contents" class="headerlink" title="Contents"></a>Contents</h2><ol>
 <li>Intro to pretrained LV models</li>
 <li>Intro to this project</li>
 <li>Methodology</li>
 <li>Experiments and results</li>
-<li>Fturue works</li>
+<li>Future work</li>
 </ol>
-<h2 id="1-Intro-to-pretrained-LV-models"><a href="#1-Intro-to-pretrained-LV-models" class="headerlink" title="1. Intro to pretrained LV models"></a>1. Intro to pretrained LV models</h2><h2 id="2-Intro-to-this-project"><a href="#2-Intro-to-this-project" class="headerlink" title="2. Intro to this project"></a>2. Intro to this project</h2><p>It seems pretrained LV models work well on various tasks, but blindly applying them without understanding what knowledge they actually learn is dangerous. Therefore, we try to answer the question: <strong>what do the pretrained LV models actually learn?</strong> Since this is such a big topic, we looked only at certain aspects of the “knowledge” in a post-hoc fashion. They are: color, <strong>number</strong>, <strong>nouns</strong>, <strong>verbs</strong> and <strong>syntax</strong>. Details can be found in the methodology section.</p>
-<h2 id="3-Methodology"><a href="#3-Methodology" class="headerlink" title="3. Methodology"></a>3. Methodology</h2><p>The main idea of our method is that changing key information in a caption should confuse the models when they are looking at both the images and captions. For instance, the below caption and image are perfectly aligned. But if I change the word “cat” in the caption into “dog”. You immediately notice the image and caption do not align any more, because you are equipped with what does a cat look like.</p>
-<p><em>Caption: A cat is playing with a ball.</em><br><img  
+<h2 id="1-Intro-to-pretrained-LV-models"><a href="#1-Intro-to-pretrained-LV-models" class="headerlink" title="1. Intro to pretrained LV models"></a>1. Intro to pretrained LV models</h2><p>good resources to start:</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://lilianweng.github.io/posts/2022-06-09-vlm/" >https://lilianweng.github.io/posts/2022-06-09-vlm/<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/pdf/2202.10936.pdf" >https://arxiv.org/pdf/2202.10936.pdf<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="2-Intro-to-this-project"><a href="#2-Intro-to-this-project" class="headerlink" title="2. Intro to this project"></a>2. Intro to this project</h2><p>Pretrained LV models seems to work well on various tasks, but blindly applying them without understanding what knowledge they actually learn is dangerous.</p>
+<p> Therefore, we try to answer the question: <strong>what do the pretrained LV models actually learn?</strong>  Specifically, we want to know if LV models encode information about:  <strong>color</strong>, <strong>number</strong>, <strong>nouns</strong>, <strong>verbs</strong> and <strong>syntax</strong>. </p>
+<h2 id="3-Methodology"><a href="#3-Methodology" class="headerlink" title="3. Methodology"></a>3. Methodology</h2><p>The main idea of our method is that  <strong>changing key information in a caption should confuse the models when the models attend to both the visual and texual information</strong>. </p>
+<p>For instance, the below caption and image are perfectly aligned. But if I change the word “cat” in the caption into “dog”. You immediately notice the image and caption do not align any more, because you have the knowledge of what a cat looks like.</p>
+<p align="center">
+<img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="https://i0.wp.com/theverybesttop10.com/wp-content/uploads/2016/09/Top-10-Fit-Active-Cats-Who-Love-Sports-10.jpg?resize=768,551&ssl=1"
-                      alt="A cat is playing with a ball,"
-                ></p>
+                      width="300" height="150" 
+                >
+</p>
+
+<p align="center">
+Caption: A cat is playing with a ball.
+</p>
+
+
 <p>Based on this idea, we create probes (“distorted” captions),  feed them into the models with images and compare model’s confidence in the alignment between the image and captions of the original and probe cases. In the following, I will explain:</p>
 <ul>
 <li>what are these probes and how to create them?</li>
@@ -294,8 +308,8 @@
 <li>Flickr8k dataset consisting of 8,000 images that are each<br>paired with five different captions</li>
 <li>CLIP and VisualBert</li>
 </ul>
-<h3 id="3-3-Evaluations"><a href="#3-3-Evaluations" class="headerlink" title="3.3 Evaluations"></a>3.3 Evaluations</h3><p>we extract the image-text similarity scores for the label 1 (match case) from the<br>models for the original and modified captions, and feed these into a softmax classifier to obtain our<br>results. </p>
-<p>We report on the accuracies of these preferences and<br>the averaged similarity scores. To ensure that the observed differences in the models’ behavior are<br>statistically significant, we carried out statistical analysis of the scores returned by the models.</p>
+<h3 id="3-3-Evaluations"><a href="#3-3-Evaluations" class="headerlink" title="3.3 Evaluations"></a>3.3 Evaluations</h3><p>we extract the image-text similarity scores for the label 1 (match case) from the models for the original and modified captions, and feed these into a softmax classifier to obtain our results. </p>
+<p>We report on the accuracies of these preferences and the averaged similarity scores. </p>
 <h2 id="4-Result-and-implications"><a href="#4-Result-and-implications" class="headerlink" title="4. Result and implications"></a>4. Result and implications</h2><table>
 <thead>
 <tr>
