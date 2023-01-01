@@ -9,7 +9,7 @@
     
     <title>
         
-            Probing into Language and Vision model |
+            Analysis and Applications of Explanatory Signals from Prompt-Based Models |
         
         RabbitHole
     </title>
@@ -161,7 +161,7 @@
     <div class="post-page-container">
         <div class="article-content-container">
             <div class="article-title">
-                <span class="title-hover-animation"><h1 style="font-size:2rem; font-weight: bold; margin: 10px 0;">Probing into Language and Vision model</h1></span>
+                <span class="title-hover-animation"><h1 style="font-size:2rem; font-weight: bold; margin: 10px 0;">Analysis and Applications of Explanatory Signals from Prompt-Based Models</h1></span>
             </div>
 
             
@@ -180,8 +180,8 @@
                             <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-duotone fa-pen-line"></i>&nbsp;
-        <span class="pc">2022-04-27 15:09:15</span>
-        <span class="mobile">2022-04-27 15:09</span>
+        <span class="pc">2022-12-29 15:09:15</span>
+        <span class="mobile">2022-12-29 15:09</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -201,15 +201,15 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/language-and-vision/">language and vision</a>&nbsp;
+                        <a href="/tags/prompting/">prompting</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/probing/">probing</a>&nbsp;
+                        | <a href="/tags/explainability/">explainability</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/embeddings/">embeddings</a>&nbsp;
+                        | <a href="/tags/low-resources/">low resources</a>&nbsp;
                     </li>
                 
             </ul>
@@ -232,7 +232,40 @@
             
 
             <div class="article-content markdown-body">
-                <h1 id="What-Do-Vision-and-Language-Models-NOT-learn"><a href="#What-Do-Vision-and-Language-Models-NOT-learn" class="headerlink" title="What Do Vision and Language Models NOT learn"></a>What Do Vision and Language Models NOT learn</h1><p>This is a summary of the project from the course <em>Lanugage and Vision</em> at the University of Stuttgart.</p>
+                <h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>Explanatory signals, such as gradients, can provide information about the importance<br>of different input parts for the output of models, thus improving models’ interpretability.<br>In natural language processing (NLP), they reveal how different parts of texts, e.g.,<br>tokens, contribute to a prediction from black-box models, e.g., deep neural networks.<br>Current research on interpretability focuses on fine-tuned models: either extracting explanatory<br>signals from models for analysis or injecting them into models to improve task<br>performance or explanation quality. This poses a challenge to interpretability in lowresource<br>settings, where data are scarce to fine-tune models. We approach this challenge<br>by leveraging prompt-based models (PBMs) to provide explanations. A comprehensive<br>comparison between explanations obtained from PBMs and fine-tuned models is<br>conducted in various settings. More specifically, we explore the influence of training<br>size, prompting strategies, and explanation methods on the output explanations from<br>the perspective of plausibility, faithfulness, and a proxy task. The tasks and data sets<br>we explore are sentiment classification (Tweet Sentiment Extraction) and natural language<br>inference (e-SNLI). We find that PBMs generate more plausible explanations than<br>fine-tuned models in the low-resource setting. Additionally, among the three explanation<br>methods we examine, namely, attention, Integrated Gradients, and Shapley Value<br>Sampling, we observe Shapley Value Sampling consistently outperforms other methods<br>in plausibility and faithfulness. Apart from providing comparisons in various aspects,<br>we propose a novel method to improve task performance with explanations by enriching<br>the prompts of PBMs with explanatory signals. Our method achieves up to 3% of<br>performance gains compared with PBMs without explanations.</p>
+<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><h2 id="1-1-Background"><a href="#1-1-Background" class="headerlink" title="1.1 Background"></a>1.1 Background</h2><p>The development of NLP models has brought notable improvements to various downstream tasks [<a class="link"   target="_blank" rel="noopener" href="https://aclanthology.org/N19-1423.pdf" >1<i class="fas fa-external-link-alt"></i></a>, <a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/abs/2005.14165" >2<i class="fas fa-external-link-alt"></i></a>]. However, it comes at the expense of interpretability: as neural models become larger and more complex, it is difficult to disentangle their structures and explain how they generate their outputs. This is detrimental to fields where high-stakes decisions are made, such as criminal justice and finance [<a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/abs/2108.04840" >3<i class="fas fa-external-link-alt"></i></a>]. </p>
+<p>In this work, we follow the definition from [<a class="link"   target="_blank" rel="noopener" href="https://link.springer.com/chapter/10.1007/978-3-319-98131-4_1" >4<i class="fas fa-external-link-alt"></i></a>],<br>that interpretability is “the ability [of a model] to explain or to present [its predictions]<br>in understandable terms to a human”. We treat explainability as the synonym of interpretability and use them interchangeably.</p>
+<p>Given the status quo and why we need explanability in NLP, we move on to introduce the taxonomy of explanation methods and some common explantion methods. </p>
+<h2 id="1-2-Taxonomy-of-explaination-methods"><a href="#1-2-Taxonomy-of-explaination-methods" class="headerlink" title="1.2 Taxonomy of explaination methods"></a>1.2 Taxonomy of explaination methods</h2><p><strong>Local vs. Global</strong>. One vital dimension to categorizing explanation methods is whether the<br>methods target interpreting specific instances or the whole model/reasoning mechanism<br>in general. The former includes SHAP ([<a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/abs/1705.07874" >5<i class="fas fa-external-link-alt"></i></a>]), and Lime ([<a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/abs/1602.04938" >6<i class="fas fa-external-link-alt"></i></a>] while the latter can be exemplified by decision trees.</p>
+<p><strong>Post-hoc vs. Self-explaining</strong>. This dimension groups explanation methods by how they<br>are derived, i.e., applying post-hoc operations on a model or during the model’s prediction<br>process. The former technique is often model-agnostic, while the latter is deeply<br>integrated with the model’s working mechanism, exemplified by attention.</p>
+<p><strong>Free texts vs. Token saliency</strong>. Another dimension distinguishes the way explanations<br>are shown: either by generating free texts as explanations or showing input importance, mostly tokens, by highlighting.</p>
+<p align="center">
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="C:\Users\ASUS\Desktop\blog\source\_posts\Post-Asset-Folder\thesis\force_plot.png"
+                      width="1500" height="120" 
+                >
+</p>
+
+<p align="center">
+Caption: Force plot generated by SHAP.
+</p>
+
+<h2 id="1-3-Common-explaination-methods"><a href="#1-3-Common-explaination-methods" class="headerlink" title="1.3 Common explaination methods"></a>1.3 Common explaination methods</h2><p>To make model behavior more explainable for the systems featuring unquantified variances,<br>intrinsically, one can develop white-box models that can be directly interpreted,<br>such as decision trees, or use parameters and weights as an indication<br>of feature importance, e.g., regression coefficients. However, the latter approach is under<br>debate whether they genuinely reflect models’ outcomes (Jain and Wallace, 2019; Wiegreffe and Pinter, 2019). Just as Jacovi and Goldberg (2020) warn, a method being inherently interpretable is merely a claim that needs to be verified before it can<br>be trusted. </p>
+<p>Another perspective is to provide post-hoc explanation methods1 that are<br>model agnostic, exemplified by gradients and its variations (Simonyan et al., 2014; Sundararajan<br>et al., 2017), LIME (Ribeiro et al., 2016) and SHAP (Lundberg and Lee,<br>2017). These methods provide explanations by feature importance. In the case of NLP,<br>these features are mostly tokens. However, post-hoc methods are not without problems:<br>the final explanations are highly dependent on the models and data sets they test<br>(Atanasova et al., 2020; Ding and Koehn, 2021), and they can be easily fooled when<br>models do not faithfully show their predictions (Slack et al., 2020; Sinha et al., 2021).</p>
+<h2 id="1-4-Current-explanability-reserach"><a href="#1-4-Current-explanability-reserach" class="headerlink" title="1.4 Current explanability reserach"></a>1.4 Current explanability reserach</h2><p>Studies focusing on model explanations with post-hoc attribution methods can be further<br>categorized into two directions: 1) Designing or analyzing explanation methods on<br>downstream tasks (Hao et al., 2021; Ding and Koehn, 2021). 2) Incorporating explanations<br>provided by attribution methods (or human-provided explanations) into model<br>training to enhance model performance and explanation quality (Zaidan et al., 2007;<br>Atanasova et al., 2022).</p>
+<h1 id="2-Motivations-and-Goals-of-this-study"><a href="#2-Motivations-and-Goals-of-this-study" class="headerlink" title="2 Motivations and Goals of this study"></a>2 Motivations and Goals of this study</h1><h4 id="Motivation-To-address-low-resources-settings"><a href="#Motivation-To-address-low-resources-settings" class="headerlink" title="Motivation: To address low-resources settings"></a>Motivation: To address low-resources settings</h4><p>Current reserach heavily on the models trained/fine-tuned with rich datasets. However, not all tasks can be approached<br>by fine-tuning a pre-trained model or training a model from scratch. Moreover, obtaining annotated explanations is challenging both time-wise and resource-wise.</p>
+<p>Considering low-resource settings where training data is scarce, it is challenging to develop<br>fine-tuned, or train-from-scratch models to perform downstream tasks, let alone<br>provide explanations for predictions. We think low-resource settings are worth paying<br>attention to and exploring because 1) principle perspective: social responsibility reasons (Ruder, 2020). We also want explanations in these settings. 2) practical perspective: explanations help understand models, by analyzing/incorporating explanations (into modells), we might gain more insights about the task and thus improve task performance, given limited data. </p>
+<p>approach interpretability issues in low-resource settings, we propose combining promptbased<br>models (PBMs) with explanation methods. </p>
+<h4 id="Challenge2-lacking-comparisions-between-attention-and-other-post-hoc-explanation-methods-with-PBM"><a href="#Challenge2-lacking-comparisions-between-attention-and-other-post-hoc-explanation-methods-with-PBM" class="headerlink" title="Challenge2: lacking comparisions between attention and other post-hoc explanation methods with PBM"></a>Challenge2: lacking comparisions between attention and other post-hoc explanation methods with PBM</h4><p>Besides the problem of lacking focus on low-resource settings in interpretability research,<br>another gap we notice is that there are rarely comprehensive comparisons between attention<br>and other attribution methods in terms of the explanations they give. Though some<br>works involve attention in the model’s interpretability (Sydorova et al., 2019; Pruthi<br>et al., 2022), they either focus on only one facet of the comparison or utilize the finetuned<br>models to derive explanations. We aim to compare explanations extracted by<br>attention and other attribution methods in both PBM and fine-tuned model settings.<br>We think such comparisons are crucial for providing direct observations of attention<br>performance against other methods and enabling more understanding of explanation<br>methods under different setups.</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><p>[1] Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. BERT: Pretraining<br>of deep bidirectional transformers for language understanding. In Proceedings<br>of the 2019 Conference of the North American Chapter of the Association<br>for Computational Linguistics: Human Language Technologies, Volume 1 (Long<br>and Short Papers), pages 4171–4186, Minneapolis, Minnesota, June 2019. Association<br>for Computational Linguistics. </p>
+<p>[2] Tom B. Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared Kaplan, Prafulla<br>Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell,<br>Sandhini Agarwal, Ariel Herbert-Voss, Gretchen Krueger, Tom Henighan, Rewon<br>Child, Aditya Ramesh, Daniel M. Ziegler, Jeffrey Wu, Clemens Winter, Christopher<br>Hesse, Mark Chen, Eric Sigler, Mateusz Litwin, Scott Gray, Benjamin Chess, Jack<br>Clark, Christopher Berner, Sam McCandlish, Alec Radford, Ilya Sutskever, and Dario<br>Amodei. Language models are few-shot learners. In Proceedings of the 34th International<br>Conference on Neural Information Processing Systems, NIPS’20, Red Hook,<br>NY, USA, 2020. Curran Associates Inc. </p>
+<p>[3] Andreas Madsen, Siva Reddy, and Sarath Chandar. Post-hoc interpretability for neural<br>nlp: A survey. ACM Comput. Surv., jul 2022.</p>
+<p>[4] Finale Doshi-Velez and Been Kim. Considerations for Evaluation and Generalization in<br>Interpretable Machine Learning, pages 3–17. Springer International Publishing, Cham,<br>2018.</p>
+<p>[5] Scott M. Lundberg and Su-In Lee. A unified approach to interpreting model predictions.<br>In Proceedings of the 31st International Conference on Neural Information Processing<br>Systems, NIPS’17, page 4768–4777, Red Hook, NY, USA, 2017. Curran Associates<br>Inc.</p>
+<p>[6] Marco Tulio Ribeiro, Sameer Singh, and Carlos Guestrin. ”why should i trust you?”:<br>Explaining the predictions of any classifier. Proceedings of the 22nd ACM SIGKDD<br>International Conference on Knowledge Discovery and Data Mining, 2016.</p>
+<h1 id="What-Do-Vision-and-Language-Models-NOT-learn"><a href="#What-Do-Vision-and-Language-Models-NOT-learn" class="headerlink" title="What Do Vision and Language Models NOT learn"></a>What Do Vision and Language Models NOT learn</h1><p>This is a summary of the project from the course <em>Lanugage and Vision</em> at the University of Stuttgart.</p>
 <p>UPDATE: our paper is accepted in the student session at KONVENS 2022</p>
 <h2 id="Contents"><a href="#Contents" class="headerlink" title="Contents"></a>Contents</h2><ol>
 <li>Intro to pretrained LV models</li>
@@ -390,11 +423,11 @@ Caption: A cat is playing with a ball.
                 <div class="post-copyright-info">
                     <div class="article-copyright-info-container">
     <ul>
-        <li>Post title：Probing into Language and Vision model</li>
+        <li>Post title：Analysis and Applications of Explanatory Signals from Prompt-Based Models</li>
         <li>Post author：Wei</li>
-        <li>Create time：2022-04-27 15:09:15</li>
+        <li>Create time：2022-12-29 15:09:15</li>
         <li>
-            Post link：https://zzzzzzzw-17.github.io/2022/04/27/vision/
+            Post link：https://zzzzzzzw-17.github.io/2022/12/29/vision/
         </li>
         <li>
             Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
@@ -409,15 +442,15 @@ Caption: A cat is playing with a ball.
                 <ul class="post-tags-box">
                     
                         <li class="tag-item">
-                            <a href="/tags/language-and-vision/">#language and vision</a>&nbsp;
+                            <a href="/tags/prompting/">#prompting</a>&nbsp;
                         </li>
                     
                         <li class="tag-item">
-                            <a href="/tags/probing/">#probing</a>&nbsp;
+                            <a href="/tags/explainability/">#explainability</a>&nbsp;
                         </li>
                     
                         <li class="tag-item">
-                            <a href="/tags/embeddings/">#embeddings</a>&nbsp;
+                            <a href="/tags/low-resources/">#low resources</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -426,29 +459,14 @@ Caption: A cat is playing with a ball.
             
                 <div class="article-nav">
                     
-                        <div class="article-prev">
-                            <a class="prev"
-                            rel="prev"
-                            href="/2022/04/27/relation_extraction/"
-                            >
-                                <span class="left arrow-icon flex-center">
-                                <i class="fas fa-chevron-left"></i>
-                                </span>
-                                <span class="title flex-center">
-                                    <span class="post-nav-title-item">Enriched Attention with Entity Masking</span>
-                                    <span class="post-nav-item">Prev posts</span>
-                                </span>
-                            </a>
-                        </div>
-                    
                     
                         <div class="article-next">
                             <a class="next"
                             rel="next"
-                            href="/2022/04/27/error-archive/"
+                            href="/2022/12/29/thesis/"
                             >
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">Hexo error archive</span>
+                                    <span class="post-nav-title-item">Analysis and Applications of Explanatory Signals from Prompt-Based Models</span>
                                     <span class="post-nav-item">Next posts</span>
                                 </span>
                                 <span class="right arrow-icon flex-center">
@@ -485,7 +503,7 @@ Caption: A cat is playing with a ball.
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div style="font-size: 1.3rem;margin-top: 0; margin-bottom: 0.8rem; transition-duration: 0.1s;"><i class="fa-solid fa-list"></i> <strong>Contents</strong></div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#What-Do-Vision-and-Language-Models-NOT-learn"><span class="nav-text">What Do Vision and Language Models NOT learn</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Contents"><span class="nav-text">Contents</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Intro-to-pretrained-LV-models"><span class="nav-text">1. Intro to pretrained LV models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Intro-to-this-project"><span class="nav-text">2. Intro to this project</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Methodology"><span class="nav-text">3. Methodology</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-Creating-probes"><span class="nav-text">3.1 Creating probes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-1-Color"><span class="nav-text">3.1.1 Color</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-2-Number"><span class="nav-text">3.1.2 Number</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-3-Nouns"><span class="nav-text">3.1.3 Nouns</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-4-Verbs"><span class="nav-text">3.1.4 Verbs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-5-Syntax"><span class="nav-text">3.1.5. Syntax</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-Dataset-and-models"><span class="nav-text">3.2 Dataset and models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-Evaluations"><span class="nav-text">3.3 Evaluations</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Result-and-implications"><span class="nav-text">4. Result and implications</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Future-works"><span class="nav-text">5. Future works</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Abstract"><span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Introduction"><span class="nav-text">1. Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Background"><span class="nav-text">1.1 Background</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Taxonomy-of-explaination-methods"><span class="nav-text">1.2 Taxonomy of explaination methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-Common-explaination-methods"><span class="nav-text">1.3 Common explaination methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-Current-explanability-reserach"><span class="nav-text">1.4 Current explanability reserach</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Motivations-and-Goals-of-this-study"><span class="nav-text">2 Motivations and Goals of this study</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Motivation-To-address-low-resources-settings"><span class="nav-text">Motivation: To address low-resources settings</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Challenge2-lacking-comparisions-between-attention-and-other-post-hoc-explanation-methods-with-PBM"><span class="nav-text">Challenge2: lacking comparisions between attention and other post-hoc explanation methods with PBM</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-text">References</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#What-Do-Vision-and-Language-Models-NOT-learn"><span class="nav-text">What Do Vision and Language Models NOT learn</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Contents"><span class="nav-text">Contents</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Intro-to-pretrained-LV-models"><span class="nav-text">1. Intro to pretrained LV models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Intro-to-this-project"><span class="nav-text">2. Intro to this project</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Methodology"><span class="nav-text">3. Methodology</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-Creating-probes"><span class="nav-text">3.1 Creating probes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-1-Color"><span class="nav-text">3.1.1 Color</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-2-Number"><span class="nav-text">3.1.2 Number</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-3-Nouns"><span class="nav-text">3.1.3 Nouns</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-4-Verbs"><span class="nav-text">3.1.4 Verbs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-5-Syntax"><span class="nav-text">3.1.5. Syntax</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-Dataset-and-models"><span class="nav-text">3.2 Dataset and models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-Evaluations"><span class="nav-text">3.3 Evaluations</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Result-and-implications"><span class="nav-text">4. Result and implications</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Future-works"><span class="nav-text">5. Future works</span></a></li></ol></li></ol>
     </div>
 </div>
             </div>
@@ -511,7 +529,7 @@ Caption: A cat is playing with a ball.
               <span>2020</span>
               -
             
-            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wei</a>
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wei</a>
         </div>
         
             <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

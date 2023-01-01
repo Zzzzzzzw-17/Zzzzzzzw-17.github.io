@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    <meta name="description" content="Hexo Theme Redefine">
+    <meta name="author" content="Wei">
+    
+    <title>
+        
+            Analysis and Applications of Explanatory Signals from Prompt-Based Models |
+        
+        RabbitHole
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/Raven.svg">
+    
+<link rel="stylesheet" href="/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/v5-font-face.min.css">
+
+    
+<link rel="stylesheet" href="/css/duotone.min.css">
+
+    
+<link rel="stylesheet" href="/css/brands.min.css">
+
+    
+<link rel="stylesheet" href="/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/css/css2.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script id="hexo-configurations">
+    let REDEFINE = window.REDEFINE || {};
+    REDEFINE.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/Raven.svg","favicon":"/images/Raven.svg","article_img_align":"center","right_side_width":"210px","content_max_width":"1000px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"https://evan.beee.top/img/wallhaven-wqery6-light.webp","dark":"https://evan.beee.top/img/wallhaven-wqery6-dark.webp"},"title_color":{"light":"#fff","dark":"#d1d1b6"},"description":"遥天定有蓝鲸在，好送余音入远波"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"0.3.5"};
+    REDEFINE.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+    
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                RabbitHole
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+            <div class="article-title">
+                <span class="title-hover-animation"><h1 style="font-size:2rem; font-weight: bold; margin: 10px 0;">Analysis and Applications of Explanatory Signals from Prompt-Based Models</h1></span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/Raven.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Wei</span>
+                            
+                                <span class="author-label">lol</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-duotone fa-pen-line"></i>&nbsp;
+        <span class="pc">2022-12-29 15:09:15</span>
+        <span class="mobile">2022-12-29 15:09</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-duotone fa-folder-open"></i></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/project/">project</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-duotone fa-tags"></i></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/prompting/">prompting</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/explainability/">explainability</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/low-resources/">low resources</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h1 id="LEFT-TO-DO"><a href="#LEFT-TO-DO" class="headerlink" title="LEFT TO DO"></a>LEFT TO DO</h1><ol>
+<li>fixing image issues</li>
+<li>adding hyperlink</li>
+<li>adding summarizd version of results, perhaps add figures accordingly.</li>
+<li>making reference more compact.</li>
+</ol>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>Explanatory signals, such as gradients, can provide information about the importance<br>of different input parts for the output of models, thus improving models’ interpretability.<br>In natural language processing (NLP), they reveal how different parts of texts, e.g.,<br>tokens, contribute to a prediction from black-box models, e.g., deep neural networks.<br>Current research on interpretability focuses on fine-tuned models: either extracting explanatory<br>signals from models for analysis or injecting them into models to improve task<br>performance or explanation quality. This poses a challenge to interpretability in lowresource<br>settings, where data are scarce to fine-tune models. We approach this challenge<br>by leveraging prompt-based models (PBMs) to provide explanations. A comprehensive<br>comparison between explanations obtained from PBMs and fine-tuned models is<br>conducted in various settings. More specifically, we explore the influence of training<br>size, prompting strategies, and explanation methods on the output explanations from<br>the perspective of plausibility, faithfulness, and a proxy task. The tasks and data sets<br>we explore are sentiment classification (Tweet Sentiment Extraction) and natural language<br>inference (e-SNLI). We find that PBMs generate more plausible explanations than<br>fine-tuned models in the low-resource setting. Additionally, among the three explanation<br>methods we examine, namely, attention, Integrated Gradients, and Shapley Value<br>Sampling, we observe Shapley Value Sampling consistently outperforms other methods<br>in plausibility and faithfulness. Apart from providing comparisons in various aspects,<br>we propose a novel method to improve task performance with explanations by enriching<br>the prompts of PBMs with explanatory signals. Our method achieves up to 3% of<br>performance gains compared with PBMs without explanations.</p>
+<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><h2 id="1-1-Background"><a href="#1-1-Background" class="headerlink" title="1.1 Background"></a>1.1 Background</h2><p>The development of NLP models has brought notable improvements to various downstream tasks [<a class="link" target="_blank" rel="noopener" href="https://aclanthology.org/N19-1423.pdf">1<i class="fas fa-external-link-alt"></i></a>, <a class="link" target="_blank" rel="noopener" href="https://arxiv.org/abs/2005.14165">2<i class="fas fa-external-link-alt"></i></a>]. However, it comes at the expense of interpretability: as neural models become larger and more complex, it is difficult to disentangle their structures and explain how they generate their outputs. This is detrimental to fields where high-stakes decisions are made, such as criminal justice and finance [<a class="link" target="_blank" rel="noopener" href="https://arxiv.org/abs/2108.04840">3<i class="fas fa-external-link-alt"></i></a>]. </p>
+<p>In this work, we follow the definition from [<a class="link" target="_blank" rel="noopener" href="https://link.springer.com/chapter/10.1007/978-3-319-98131-4_1">4<i class="fas fa-external-link-alt"></i></a>],<br>that interpretability is “the ability [of a model] to explain or to present [its predictions]<br>in understandable terms to a human”. We treat explainability as the synonym of interpretability and use them interchangeably.</p>
+<p>Given the status quo and why we need explanability in NLP, we move on to introduce the taxonomy of explanation methods and some common explantion methods. </p>
+<h2 id="1-2-Taxonomy-of-explaination-methods"><a href="#1-2-Taxonomy-of-explaination-methods" class="headerlink" title="1.2 Taxonomy of explaination methods"></a>1.2 Taxonomy of explaination methods</h2><p><strong>Local vs. Global</strong>. One vital dimension to categorizing explanation methods is whether the<br>methods target interpreting specific instances or the whole model/reasoning mechanism<br>in general. The former includes SHAP ([<a class="link" target="_blank" rel="noopener" href="https://arxiv.org/abs/1705.07874">5<i class="fas fa-external-link-alt"></i></a>]), and Lime ([<a class="link" target="_blank" rel="noopener" href="https://arxiv.org/abs/1602.04938">6<i class="fas fa-external-link-alt"></i></a>] while the latter can be exemplified by decision trees.</p>
+<p><strong>Post-hoc vs. Self-explaining</strong>. This dimension groups explanation methods by how they<br>are derived, i.e., applying post-hoc operations on a model or during the model’s prediction<br>process. The former technique is often model-agnostic, while the latter is deeply<br>integrated with the model’s working mechanism, exemplified by attention.</p>
+<p><strong>Free texts vs. Token saliency</strong>. Another dimension distinguishes the way explanations<br>are shown: either by generating free texts as explanations or showing input importance, mostly tokens, by highlighting.</p>
+<p align="center">
+<img lazyload src="/images/loading.svg" data-src="https://drive.google.com/file/d/1KMTgqK53g_F02XaJMPfuUYnWyV0DiT6x/view?usp=share_link width=" 1500" height="120">
+</p>
+
+<p align="center">
+Caption: Force plot generated by SHAP.
+</p>
+
+<h2 id="1-3-Common-explaination-methods"><a href="#1-3-Common-explaination-methods" class="headerlink" title="1.3 Common explaination methods"></a>1.3 Common explaination methods</h2><p>To make model behavior more explainable for the systems featuring unquantified variances,<br>intrinsically, one can develop white-box models that can be directly interpreted,<br>such as decision trees, or use parameters and weights as an indication<br>of feature importance, e.g., regression coefficients. However, the latter approach is under<br>debate whether they genuinely reflect models’ outcomes [<a class="link" target="_blank" rel="noopener" href="https://arxiv.org/abs/1902.10186">7<i class="fas fa-external-link-alt"></i></a>, <a class="link" target="_blank" rel="noopener" href="https://arxiv.org/abs/1908.04626">8<i class="fas fa-external-link-alt"></i></a>] Just as [<a class="link" target="_blank" rel="noopener" href="https://arxiv.org/abs/2004.03685">9<i class="fas fa-external-link-alt"></i></a>] warn, a method being inherently interpretable is merely a claim that needs to be verified before it can<br>be trusted. </p>
+<p>Another perspective is to provide post-hoc explanation methods1 that are<br>model agnostic, exemplified by gradients and its variations [<a class="link" target="_blank" rel="noopener" href="https://arxiv.org/abs/1312.6034">10<i class="fas fa-external-link-alt"></i></a>, <a class="link" target="_blank" rel="noopener" href="https://arxiv.org/abs/1703.01365">11<i class="fas fa-external-link-alt"></i></a>], LIME, and SHAP. These methods provide explanations by feature importance. In the case of NLP,<br>these features are mostly tokens. However, post-hoc methods are not without problems:<br>the final explanations are highly dependent on the models and data sets they test<br>[<a class="link" target="_blank" rel="noopener" href="http://aclanthology.lst.uni-saarland.de/2020.emnlp-main.263.pdf">12<i class="fas fa-external-link-alt"></i></a>, <a class="link" target="_blank" rel="noopener" href="https://aclanthology.org/2021.naacl-main.399.pdf">13<i class="fas fa-external-link-alt"></i></a>], and they can be easily fooled when<br>models do not faithfully show their predictions [<a class="link" target="_blank" rel="noopener" href="https://arxiv.org/abs/1911.02508">14<i class="fas fa-external-link-alt"></i></a>].</p>
+<h2 id="1-4-Current-explanability-research"><a href="#1-4-Current-explanability-research" class="headerlink" title="1.4 Current explanability research"></a>1.4 Current explanability research</h2><p>Studies focusing on model explanations with post-hoc attribution methods can be further<br>categorized into two directions: 1) Designing or analyzing explanation methods on<br>downstream tasks [<a class="link" target="_blank" rel="noopener" href="https://aclanthology.org/2021.naacl-main.399.pdf">13<i class="fas fa-external-link-alt"></i></a>, <a class="link" target="_blank" rel="noopener" href="https://arxiv.org/abs/2004.11207">15<i class="fas fa-external-link-alt"></i></a>]. 2) Incorporating explanations<br>provided by attribution methods (or human-provided explanations) into model<br>training to enhance model performance and explanation quality [<a class="link" target="_blank" rel="noopener" href="https://arxiv.org/abs/2109.03756#:~:text=Explanations%20shed%20light%20on%20a,supervised%20way%20given%20human%20explanations.">16<i class="fas fa-external-link-alt"></i></a>].</p>
+<h1 id="2-About-this-study"><a href="#2-About-this-study" class="headerlink" title="2. About this study"></a>2. About this study</h1><h2 id="2-1-Chanllenges"><a href="#2-1-Chanllenges" class="headerlink" title="2.1 Chanllenges"></a>2.1 Chanllenges</h2><p>Current reserach heavily on the models trained/fine-tuned with rich datasets. However, not all tasks can be approached<br>by fine-tuning a pre-trained model or training a model from scratch. Moreover, obtaining annotated explanations is challenging both time-wise and resource-wise.</p>
+<p>Besides the problem of lacking focus on low-resource settings in interpretability research,<br>another gap we notice is that there are rarely comprehensive comparisons between attention<br>and other attribution methods in terms of the explanations they give. Though some<br>works involve attention in the model’s interpretability [<a class="link" target="_blank" rel="noopener" href="https://arxiv.org/abs/2012.00893">17<i class="fas fa-external-link-alt"></i></a>, <a class="link" target="_blank" rel="noopener" href="https://arxiv.org/abs/1906.10924">18<i class="fas fa-external-link-alt"></i></a>],  they either focus on only one facet of the comparison or utilize the finetuned<br>models to derive explanations.</p>
+<h2 id="2-2-Motivations"><a href="#2-2-Motivations" class="headerlink" title="2.2 Motivations"></a>2.2 Motivations</h2><p>We think low-resource settings are worth paying<br>attention to and exploring because 1) principle perspective: social responsibility reasons [<a class="link" target="_blank" rel="noopener" href="https://ruder.io/nlp-beyond-english/">19<i class="fas fa-external-link-alt"></i></a>]. We also want explanations in these settings. 2) practical perspective: explanations help understand models, by analyzing/incorporating explanations (into modells), we might gain more insights about the task and thus improve task performance, given limited data. </p>
+<p>We think comparisons between attention and other post-hoc explanation methods are crucial for providing direct observations of attention<br>performance against other methods and enabling more understanding of explanation<br>methods under different setups.</p>
+<h2 id="2-3-Goals"><a href="#2-3-Goals" class="headerlink" title="2.3 Goals"></a>2.3 Goals</h2><ul>
+<li>To enable explanations in low resource settings by combining PBMs with explanation methods.</li>
+<li>To analyze explanations  (both from PBMs and FTs)</li>
+<li>To explore different ways to incorporate explanations from PBMs into model training to boost task performance.</li>
+</ul>
+<h2 id="2-4-Research-Questions"><a href="#2-4-Research-Questions" class="headerlink" title="2.4 Research Questions"></a>2.4 Research Questions</h2><ol>
+<li>How do different prompting strategies influence explanatory signals? </li>
+<li>How does the amount of task data influence the generated signals? </li>
+<li>How does the choice of saliency methods, e.g., attention, influence the signals? </li>
+<li>Compared with fine-tuned models, how good are the explanations given by PBMs? </li>
+<li>What are the possible ways to utilize the explanatory signals from PBMs to improve downstream task performance in low resource settings? </li>
+</ol>
+<h1 id="3-Methodology"><a href="#3-Methodology" class="headerlink" title="3. Methodology"></a>3. Methodology</h1><p align="center">
+<img lazyload src="/images/loading.svg" data-src="C:\Users\ASUS\Desktop\blog\source\_posts\thesis\PBM.png" width="800" height="400">
+</p>
+
+<p align="center">
+Caption: Extraction of explanatory signals from PBMs. The input sentence (shown
+in yellow boxes) is appended with a prompt template (shown in purple boxes). The
+appended input is fed into PBMs, and the last hidden representation (shown in green
+boxes) for the [MASK] token is used to predict the label. Saliency methods are used
+to attribute importance at the token level based on the model’s prediction.
+</p>
+
+
+<p align="center">
+<img lazyload src="/images/loading.svg" data-src="C:\Users\ASUS\Desktop\blog\source\_posts\thesis\FT.png" width="600" height="400">
+</p>
+
+<p align="center">
+Caption: Extraction of explanatory signals from fine-tuned models. The input sentence
+(shown in yellow boxes) is fed into the model, and the last hidden representation
+(shown in green boxes) for the [CLS] token is used to predict the label. Saliency methods
+are used to attribute importance at the token level based on models’ predictions.
+</p>
+
+
+<h1 id="4-Analysis-comparing-explanatory-signals"><a href="#4-Analysis-comparing-explanatory-signals" class="headerlink" title="4. Analysis: comparing explanatory signals"></a>4. Analysis: comparing explanatory signals</h1><h2 id="4-1Tasks-and-data-sets"><a href="#4-1Tasks-and-data-sets" class="headerlink" title="4.1Tasks and data sets"></a>4.1Tasks and data sets</h2><p>We explore sentiment classification and natural language inference out of the motivation<br>that these tasks feature different semantic depths. Sentiment classification involves<br>detecting surface lexical features more often. By contrast, natural language inference<br>might require a more contextual understanding of sentences. We use the Tweet Sentiment<br>Extraction (TSE) data set1 for sentiment classification and the e-SNLI data set (Camburu et al., 2018) for natural language inference.The follwing tables demonstrate some statistics about<br>the two data sets, and show example sentences.</p>
+<p align="center">
+<img lazyload src="/images/loading.svg" data-src="C:\Users\ASUS\Desktop\blog\source\_posts\thesis\dataset.png" width="300" height="150">
+</p>
+
+<p align="center">
+Caption: Number of training, development, and test data in TSE and e-SNLI.
+</p>
+
+
+<p align="center">
+<img lazyload src="/images/loading.svg" data-src="C:\Users\ASUS\Desktop\blog\source\_posts\thesis\dataset2.png" width="800" height="180">
+</p>
+
+<p align="center">
+Caption:Example sentences from TSE and e-SNLI. We use ’/’ to separate the
+premise (former) and hypothesis (latter) in e-SNLI.
+</p>
+
+
+
+
+<h2 id="4-2-Models-and-promptings"><a href="#4-2-Models-and-promptings" class="headerlink" title="4.2 Models and promptings"></a>4.2 Models and promptings</h2><p>We mainly focus on pre-trained language models out of consideration of their strong<br>performance and appropriateness for prompting. We choose BERT-base, BERT-large, and RoBERTa-large as base models. </p>
+<p>As mentioned, the main advantage of prompting comes from its adaptability to small<br>data sizes. As a result, training PBMs does not require as much data as fine-tuning<br>the pre-trained models. However, good prompts and training strategies are crucial to<br>obtain strong PBMs (Gao et al., 2021). In this study, we experiment with four different<br>methods for prompting:</p>
+<ol>
+<li><strong>ManualPrompt</strong> stands the setting of training PBMs with prompts designed by<br>experts. For many tasks, there have already been prompts reported to yield good<br>task performance (Schick and Sch¨utze, 2021). We select two manual prompts for<br>each task and apply the same templates and verbalizers without further modifications. The following table demonstrates the prompt templates and verbalizers we use for<br>each task.</li>
+</ol>
+<p align="center">
+<img lazyload src="/images/loading.svg" data-src="C:\Users\ASUS\Desktop\blog\source\_posts\thesis\prompts.png" width="600" height="150">
+</p>
+
+<p align="center">
+Caption:Manual prompts for TSE and e-SNLI. [S] stands for the sentence ([S1]
+and [S2] are the premise and hypothesis respectively), and [P] is the verbalizer. For
+TSE, the verbalizers correspond to positive/negative. As for e-SNLI, the verbalizers
+correspond to entailment/contradiction/neutral.
+</p>
+
+<ol start="2">
+<li><p><strong>BitFit</strong> uses the same prompts as in the ManualPrompt1 setting. They differ only<br>in the training strategy: In ManualPrompt, the whole model is fine-tuned, whereas,<br>in BitFit, only the bias terms of the model are fine-tuned. We are motivated<br>to experiment with this method because BitFit is shown to provide “the best<br>accuracy-efficiency trade-off,” and it even outperforms ManualPrompt in some<br>settings (Logan IV et al., 2022).</p>
+</li>
+<li><p><strong>AutoPrompt</strong> is a setting where prompt templates are automatically searched in<br>the form of discrete tokens (Shin et al., 2020). The core idea is to find a fixedlength<br>set (trigger words) of tokens that can maximize the likelihood of desired<br>labels while keeping the rest of the model fixed. Therefore, none of the model<br>parameters are fine-tuned. Though the method conducts an automatic prompt<br>search based on gradients of trigger words, the prompt templates are initially<br>fixed, which means the length of the prompts and the position of [P] should be<br>pre-defined based on task profiles.</p>
+</li>
+<li><p><strong>BFF</strong> (Gao et al., 2021) also automatically searches for prompts. However, it does<br>not require the length of the prompts to be fixed, nor should the position of [P]<br>be defined. The prompt templates are generated by leveraging T5 (Raffel et al.,2022) with few-shot learning. Verbalizers are created by selecting top vocabulary<br>words based on their conditional likelihood given initial prompts and the language<br>model.</p>
+</li>
+</ol>
+<h2 id="4-3-Experimental-setup"><a href="#4-3-Experimental-setup" class="headerlink" title="4.3 Experimental setup"></a>4.3 Experimental setup</h2><p>We apply attention, Integrated Gradients, and ShapSample on PBMs and fine-tuned<br>models to extract explanations. As for attention, we extract the attention scores from<br>the last hidden layers of the [CLS] token and average them across different heads. As<br>for Integrated Gradients and ShapSample, we use the <a class="link" target="_blank" rel="noopener" href="https://captum.ai/">Captum library<i class="fas fa-external-link-alt"></i></a>. Explanatory<br>signals are only drawn from our custom test set for evaluations.</p>
+<p>When prompting/fine-tuning models, we explore the effects of different training sizes on<br>the final explanatory signals. This allows us to compare the signals in low-resource and<br>standard settings and provides more insights into the relationship between the training<br>size and the quality of explanations. We set 6 training sizes for each data set and keep<br>the logarithmic distance (base 2) between two training sizes reasonably similar. As for<br>TSE, we select 8, 32, 128, 512, 2048, and 11828 (the whole training size), corresponding<br>to 3, 5, 7, 9, 11, and 13.5. As for e-SNLI, we set 8, 32, 128, 1024, 16384, and 549367<br>(the whole training size), corresponding to 3, 5, 7, 10, 14, and 19.</p>
+<h2 id="4-4-Results"><a href="#4-4-Results" class="headerlink" title="4.4 Results"></a>4.4 Results</h2><h1 id="5-Applications-incorporating-explanatory-signals-in-low-resource-settings"><a href="#5-Applications-incorporating-explanatory-signals-in-low-resource-settings" class="headerlink" title="5. Applications: incorporating explanatory signals in low-resource settings"></a>5. Applications: incorporating explanatory signals in low-resource settings</h1><h2 id="5-1-Motivations"><a href="#5-1-Motivations" class="headerlink" title="5.1 Motivations"></a>5.1 Motivations</h2><ol>
+<li><p>Previous studies show that integrating explanations in rich-resource settings<br>might not improve task performances (Hase and Bansal, 2022). However, leveraging<br>explanations can be helpful in low-resource settings (Bhat et al., 2021). </p>
+</li>
+<li><p>Most studies either experiment only with discrete binary rationales (Atanasova et al., 2022) or use<br>the fine-tuned models to generate explanations (Bhat et al., 2021; Pruthi et al., 2022).<br>To the best of our knowledge, no study explores incorporating continuous explanatory<br>signals from PBMs into downstream task training. </p>
+</li>
+<li><p>In the last chapter, we observe<br>that with a few training instances (low-resource setting), explanations from PBMs can<br>be more plausible than explanations from fine-tuned models. </p>
+</li>
+<li><p>Incorporating explanations<br>into model training can also be an evaluation metric (Pruthi et al., 2022) to<br>test how good saliency methods are in generating task-contributing explanations. This<br>provides another dimension when comparing attention and other attribution methods.</p>
+</li>
+</ol>
+<h2 id="5-2-Experimental-setup"><a href="#5-2-Experimental-setup" class="headerlink" title="5.2 Experimental setup"></a>5.2 Experimental setup</h2><p>In terms of the task, we focus on TSE in this chapter because we think explanations (in<br>the form of token saliency) should be more helpful in TSE than e-SNLI, as the former<br>is more easily influenced by surface lexical features than the latter.</p>
+<p>We experiment with three training sizes: k = 16, k = 64 and k = 256, with each<br>class half of k (8,32,128) for both the training and validation data sets. To make our<br>observations as general as possible, we sample each training and validation data set from<br>5 seeds. As a result, we have 15 data sets in total. The test data set is the same as in<br>the previous chapter.</p>
+<p>As for the models, we use BERT-base-uncased as the PBMs to generate explanations<br>because they are shown to produce the most plausible explanations, yet computationally<br>cheaper than BERT-large and RoBERTa-large. Since PBMs are sensitive to hyperparameters,<br>we first use grid search to find the best parameters for the learning rate<br>and accumulation steps with four folds validations. Then we train PBMs with the bestsearched<br>hyper-parameters. For each data set, we train 10 PBMs from different seeds.<br>We then use the trained models to annotate the training, validation, and test data sets. This process is shown in the following figure.</p>
+<p align="center">
+<img lazyload src="/images/loading.svg" data-src="C:\Users\ASUS\Desktop\blog\source\_posts\thesis\annotation2.png" width="600" height="300">
+</p>
+
+<p align="center">
+Caption:The training and explanation generation process. Each combination of
+k and data set seed generates 10 PBMs. These PBMs are used to annotate training,
+development, and test sets with explanations.
+</p>
+
+<h2 id="5-3-Methods-and-results"><a href="#5-3-Methods-and-results" class="headerlink" title="5.3 Methods and results"></a>5.3 Methods and results</h2><h2 id="5-4-Summary"><a href="#5-4-Summary" class="headerlink" title="5.4 Summary"></a>5.4 Summary</h2><p>This section explores integrating explanatory signals into models to enhance task performance<br>in a low-resource setting. We experiment with three approaches: modeling<br>explanations as labels, as inputs, and appending important tokens to prompts.</p>
+<p>We find that modeling explanations as labels does not improve task performance. However,<br>an analysis of the distribution of logits suggests adding explanations decreases<br>models’ uncertainties when making predictions. Nevertheless, we observe models predict<br>more correct instances yet also fail more when trained with gold explanations. Regarding<br>other explanatory signals, models make fewer erroneous predictions and fewer<br>accurate predictions.</p>
+<p>In terms of modeling explanations as inputs, we observe 1-2% of performance gains<br>compared with the performance of fine-tuned models without adding explanations when<br>the training size is 16. Interestingly, we also observe 2-3% performance gains compared<br>with the setting of modeling explanations as labels in the training size 16. This suggests<br>that explanatory signals can be helpful when modeled as inputs. We also explore how<br>to use explanatory signals as inputs, i.e., whether to softmax them before multiplying<br>with hidden representations from the last layer of models; whether to concatenate the<br>weighted average derived from the aforementioned multiplications with the representation<br>of [CLS] token or only to use the weighted average. We find that using only the<br>weighted average, with softmax-ed explanatory signals, works the best.</p>
+<p>The above two approaches utilize fine-tuned models, with explanations added for the<br>downstream task, which is the default option in previous studies (Atanasova et al.,<br>2022; Pruthi et al., 2022). We propose a simple yet effective method to improve task<br>performance by replacing the fine-tuned models with PBMs and integrating explanatory<br>signals by appending important tokens to prompts. This method increases the task<br>performance by an additional 1-3% compared with the original PBMs without tokens<br>appended. Interestingly, we find that simply appending important tokens during inference<br>can also improve task performance by 1-2%. This means once we train PBMs on a<br>task in low-resource settings, we can get additional performance gains by appending 10-<br>20% of the most important tokens in inputs without further training. The importance<br>score (explanatory signals) can be extracted from the PBMs with explanation methods,<br>e.g., ShapSample.</p>
+<p>We also analyze what type of instances models feel most (un)confident about when<br>predicting and the transferability of models on a similar task. Both analyses are carried<br>out on models trained with explanations as labels. In terms of instances that models<br>feel confident about, we find that shorter sentences with positive labels seems easier<br>for models than longer sentences with negative labels. Concerning transferability, We<br>observe significant improvements when adding explanations extracted from Integrated<br>Gradients and ShapSample with 256 training instances.</p>
+<h1 id="6-Conclusions-and-Future-work"><a href="#6-Conclusions-and-Future-work" class="headerlink" title="6. Conclusions and Future work"></a>6. Conclusions and Future work</h1><ol>
+<li><p>Shapley Value Sampling outperforms attention and Integrated Gradients regarding plausibility and faithfulness across the sentiment classification and natural language inference tasks. </p>
+</li>
+<li><p>More training instances can lead to more plausible and faithful explanations. However, faithfulness can stagnate or even decrease when the training size passes a certain value.</p>
+</li>
+<li><p>In low-resource settings, we find PBMs generate more plausible explanations than finetuned models. However, fine-tuned models generate more faithful explanations than PBMs.</p>
+</li>
+<li><p>Simply appending explanatory signals extracted from trained PBMs during inference can also help task performance by 1-3%.</p>
+</li>
+</ol>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><p>[1] Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. BERT: Pretraining<br>of deep bidirectional transformers for language understanding. In Proceedings<br>of the 2019 Conference of the North American Chapter of the Association<br>for Computational Linguistics: Human Language Technologies, Volume 1 (Long<br>and Short Papers), pages 4171–4186, Minneapolis, Minnesota, June 2019. Association<br>for Computational Linguistics. </p>
+<p>[2] Tom B. Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared Kaplan, Prafulla<br>Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell,<br>Sandhini Agarwal, Ariel Herbert-Voss, Gretchen Krueger, Tom Henighan, Rewon<br>Child, Aditya Ramesh, Daniel M. Ziegler, Jeffrey Wu, Clemens Winter, Christopher<br>Hesse, Mark Chen, Eric Sigler, Mateusz Litwin, Scott Gray, Benjamin Chess, Jack<br>Clark, Christopher Berner, Sam McCandlish, Alec Radford, Ilya Sutskever, and Dario<br>Amodei. Language models are few-shot learners. In Proceedings of the 34th International<br>Conference on Neural Information Processing Systems, NIPS’20, Red Hook,<br>NY, USA, 2020. Curran Associates Inc. </p>
+<p>[3] Andreas Madsen, Siva Reddy, and Sarath Chandar. Post-hoc interpretability for neural<br>nlp: A survey. ACM Comput. Surv., jul 2022.</p>
+<p>[4] Finale Doshi-Velez and Been Kim. Considerations for Evaluation and Generalization in<br>Interpretable Machine Learning, pages 3–17. Springer International Publishing, Cham,<br>2018.</p>
+<p>[5] Scott M. Lundberg and Su-In Lee. A unified approach to interpreting model predictions.<br>In Proceedings of the 31st International Conference on Neural Information Processing<br>Systems, NIPS’17, page 4768–4777, Red Hook, NY, USA, 2017. Curran Associates<br>Inc.</p>
+<p>[6] Marco Tulio Ribeiro, Sameer Singh, and Carlos Guestrin. ”why should i trust you?”:<br>Explaining the predictions of any classifier. Proceedings of the 22nd ACM SIGKDD<br>International Conference on Knowledge Discovery and Data Mining, 2016.</p>
+<p>[7] Sarthak Jain and Byron C. Wallace. Attention is not Explanation. In Proceedings of the<br>2019 Conference of the North American Chapter of the Association for Computational<br>Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers), pages<br>3543–3556, Minneapolis, Minnesota, June 2019. Association for Computational Linguistics.</p>
+<p>[8] Sarah Wiegreffe and Yuval Pinter. Attention is not not explanation. In Proceedings of the<br>2019 Conference on Empirical Methods in Natural Language Processing and the 9th<br>International Joint Conference on Natural Language Processing (EMNLP-IJCNLP),<br>pages 11–20, Hong Kong, China, November 2019. Association for Computational Linguistics.</p>
+<p>[9] Alon Jacovi and Yoav Goldberg. Towards faithfully interpretable NLP systems: How<br>should we define and evaluate faithfulness? In Proceedings of the 58th Annual Meeting<br>of the Association for Computational Linguistics, pages 4198–4205, Online, July 2020.<br>Association for Computational Linguistics.</p>
+<p>[10] Karen Simonyan, Andrea Vedaldi, and Andrew Zisserman. Deep inside convolutional<br>networks: Visualising image classification models and saliency maps. In Yoshua Bengio<br>and Yann LeCun, editors, 2nd International Conference on Learning Representations,<br>ICLR 2014, Banff, AB, Canada, April 14-16, 2014, Workshop Track Proceedings,<br>2014.</p>
+<p>[11] Mukund Sundararajan, Ankur Taly, and Qiqi Yan. Axiomatic attribution for deep<br>networks. In Proceedings of the 34th International Conference on Machine Learning Volume 70, ICML’17, page 3319–3328. JMLR.org, 2017.</p>
+<p>[12] Pepa Atanasova, Jakob Grue Simonsen, Christina Lioma, and Isabelle Augenstein. A diagnostic<br>study of explainability techniques for text classification. In Proceedings of the<br>2020 Conference on Empirical Methods in Natural Language Processing (EMNLP),<br>pages 3256–3274, Online, November 2020. Association for Computational Linguistics.</p>
+<p>[13] Shuoyang Ding and Philipp Koehn. Evaluating saliency methods for neural language<br>models. In Proceedings of the 2021 Conference of the North American Chapter<br>of the Association for Computational Linguistics: Human Language Technologies,<br>pages 5034–5052, Online, June 2021. Association for Computational Linguistics.</p>
+<p>[14] Dylan Slack, Sophie Hilgard, Emily Jia, Sameer Singh, and Himabindu Lakkaraju. Fooling<br>lime and shap: Adversarial attacks on post hoc explanation methods. In Proceedings<br>of the AAAI/ACM Conference on AI, Ethics, and Society, AIES ’20, page<br>180–186, New York, NY, USA, 2020. Association for Computing Machinery.</p>
+<p>[15] Yaru Hao, Li Dong, Furu Wei, and Ke Xu. Self-attention attribution: Interpreting<br>information interactions inside transformer. In The Thirty-Fifth AAAI Conference<br>on Artificial Intelligence. AAAI Press, 2021.</p>
+<p>[16] Pepa Atanasova, Jakob Grue Simonsen, Christina Lioma, and Isabelle Augenstein.<br>Diagnostics-guided explanation generation. Proceedings of the AAAI Conference on<br>Artificial Intelligence, 36(10):10445–10453, 2022.</p>
+<p>[17] Danish Pruthi, Rachit Bansal, Bhuwan Dhingra, Livio Baldini Soares, Michael Collins,<br>Zachary C. Lipton, Graham Neubig, and William W. Cohen. Evaluating explanations:<br>How much do explanations from the teacher aid students? Transactions of the Association<br>for Computational Linguistics, 10:359–375, 2022.</p>
+<p>[18] Alona Sydorova, Nina Poerner, and Benjamin Roth. Interpretable question answering<br>on knowledge bases and text. In Proceedings of the 57th Annual Meeting of the<br>Association for Computational Linguistics, pages 4943–4951, Florence, Italy, July<br>2019. Association for Computational Linguistics.</p>
+<p>[19] Sebastian Ruder. Why You Should Do NLP Beyond English.</p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：Analysis and Applications of Explanatory Signals from Prompt-Based Models</li>
+        <li>Post author：Wei</li>
+        <li>Create time：2022-12-29 15:09:15</li>
+        <li>
+            Post link：https://zzzzzzzw-17.github.io/2022/12/29/thesis/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/prompting/">#prompting</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/explainability/">#explainability</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/low-resources/">#low resources</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2022/12/29/vision/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                <i class="fas fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Analysis and Applications of Explanatory Signals from Prompt-Based Models</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2022/04/27/relation_extraction/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Enriched Attention with Entity Masking</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                <i class="fas fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;Comments</i>
+    </div>
+    
+
+        
+            
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div style="font-size: 1.3rem;margin-top: 0; margin-bottom: 0.8rem; transition-duration: 0.1s;"><i class="fa-solid fa-list"></i> <strong>Contents</strong></div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LEFT-TO-DO"><span class="nav-text">LEFT TO DO</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Abstract"><span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Introduction"><span class="nav-text">1. Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Background"><span class="nav-text">1.1 Background</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Taxonomy-of-explaination-methods"><span class="nav-text">1.2 Taxonomy of explaination methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-Common-explaination-methods"><span class="nav-text">1.3 Common explaination methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-Current-explanability-research"><span class="nav-text">1.4 Current explanability research</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-About-this-study"><span class="nav-text">2. About this study</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Chanllenges"><span class="nav-text">2.1 Chanllenges</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Motivations"><span class="nav-text">2.2 Motivations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-Goals"><span class="nav-text">2.3 Goals</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-Research-Questions"><span class="nav-text">2.4 Research Questions</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Methodology"><span class="nav-text">3. Methodology</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Analysis-comparing-explanatory-signals"><span class="nav-text">4. Analysis: comparing explanatory signals</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1Tasks-and-data-sets"><span class="nav-text">4.1Tasks and data sets</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-Models-and-promptings"><span class="nav-text">4.2 Models and promptings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-Experimental-setup"><span class="nav-text">4.3 Experimental setup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-Results"><span class="nav-text">4.4 Results</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-Applications-incorporating-explanatory-signals-in-low-resource-settings"><span class="nav-text">5. Applications: incorporating explanatory signals in low-resource settings</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-Motivations"><span class="nav-text">5.1 Motivations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-Experimental-setup"><span class="nav-text">5.2 Experimental setup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-Methods-and-results"><span class="nav-text">5.3 Methods and results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-Summary"><span class="nav-text">5.4 Summary</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-Conclusions-and-Future-work"><span class="nav-text">6. Conclusions and Future work</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-text">References</span></a></li></ol>
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Wei</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v0.3.5</a>
+        </div>
+        
+        
+    </div>
+    <link rel="stylesheet" href="//evan.beee.top/css/waline.css"/>
+    <script src="//evan.beee.top/js/waline.js"></script>
+    
+<link rel="stylesheet" href="/css/regular.min.css">
+
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fa-duotone fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-duotone fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            REDEFINE.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            REDEFINE.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            REDEFINE.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
