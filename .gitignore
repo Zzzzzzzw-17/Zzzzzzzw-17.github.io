@@ -5,3 +5,8 @@ db.json
 node_modules/
 public/
 .deploy*/
+.github
+Gemfile
+Gemfile.lock
+**/*.backup
+scaffolds
