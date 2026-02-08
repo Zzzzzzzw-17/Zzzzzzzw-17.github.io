@@ -34,10 +34,17 @@ exclude:
 
 plugins:
   - jekyll-feed
-  - jekyll-seo-tag
 
 # Permalink structure
 permalink: /:title/
 
 # Build settings
 show_excerpts: false
+
+# Disable date in pages (fixes Invalid Date error)
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      date: false
