@@ -40,7 +40,8 @@ I'm drawn to abandoned places—forgotten factories, empty buildings, spaces whe
 <div class="hobby-item">
 <div class="hobby-title">📸 Photography of forgotten spaces</div>
 <div class="hobby-desc">
-I document these places before they vanish entirely. Every crumbling wall, broken window, and overgrown corridor holds a narrative waiting to be preserved. My camera becomes a bridge between past and present.
+I document these places before they vanish entirely. Every crumbling wall, broken window, and overgrown corridor holds a narrative waiting to be preserved. My camera becomes a bridge between past and present. You can find some of my collections 
+in the Instagram.
 </div>
 </div>
 
